@@ -1,0 +1,50 @@
+[project]
+name = "yaddd-example"
+version = "0.1.0"
+description = "A simple web-application using yaddd"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "asyncpg>=0.31.0",
+    "fastapi>=0.142.2",
+    "pydantic-settings>=2.15.0",
+    "uvicorn[standard]>=0.30.0",
+    "yaddd==0.2.0",
+    "yaddd-sqlalchemy>=0.1.0",
+]
+
+[dependency-groups]
+dev = [
+    "httpx2>=2.13.0",
+    "mypy>=1.11.0",
+    "pyright>=1.1.414",
+    "pytest>=8.3.0",
+    "ruff>=0.6.0",
+]
+
+[tool.ruff]
+target-version = "py314"
+line-length = 100
+src = ["src"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP", "B", "C4", "SIM"]
+ignore = ["D"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.mypy]
+python_version = "3.14"
+mypy_path = ["src"]
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+show_error_codes = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.pyright]
+extraPaths = ["src"]
